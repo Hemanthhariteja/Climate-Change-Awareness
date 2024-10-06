@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unmasking the Climate Crisis</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0f0f0f;
+            color: #fff;
+        }
+        header {
+            background: linear-gradient(45deg, #6f86d6, #48c6ef);
+            text-align: center;
+            padding: 50px 20px;
+        }
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+        header p {
+            font-size: 1.5em;
+            margin: 0;
+            max-width: 800px;
+            margin: auto;
+        }
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        section p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 1.2em;
+            line-height: 1.6em;
+        }
+        .section-bg {
+            background-color: #1b2735;
+            padding: 100px 0;
+            color: white;
+        }
+        .section-light {
+            background-color: #fff;
+            color: black;
+            padding: 100px 0;
+        }
+        .chart-container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 800px;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            color: black;
+        }
+        footer {
+            background-color: #111;
+            color: #ccc;
+            padding: 20px;
+            text-align: center;
+        }
+        .call-to-action {
+            background-color: #ff5722;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .call-to-action:hover {
+            background-color: #e64a19;
+        }
+    </style>
+    <!-- Add Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Unmasking the Climate Crisis</h1>
+    <p>A Data-Driven Journey into the Heart of Climate Change</p>
+</header>
+
+<!-- Section 1: Introduction -->
+<section id="intro">
+    <h2>Climate Change: The Defining Challenge of Our Time</h2>
+    <p>Climate change is no longer a distant threat. It is happening now. Rising temperatures, melting ice sheets, and increasingly extreme weather events are only a glimpse of what's to come. This page unravels the data, explains the science, and shows what you can do to help.</p>
+</section>
+
+<!-- Section 2: Temperature Rise Visualization -->
+<section id="temperature-rise" class="section-bg">
+    <h2>Rising Global Temperatures</h2>
+    <p>Global temperatures have been rising for decades, and the effects are being felt worldwide. Below, you can explore how temperatures have shifted over the years.</p>
+    <div class="chart-container">
+        <canvas id="temperatureChart"></canvas>
+    </div>
+</section>
+
+<!-- Section 3: Sea Level Rise Visualization -->
+<section id="sea-level-rise" class="section-light">
+    <h2>Rising Sea Levels</h2>
+    <p>Rising sea levels are threatening coastal regions around the world. Cities like New York, Mumbai, and Miami face an uncertain future. Explore how sea levels have changed over time.</p>
+    <div class="chart-container">
+        <canvas id="seaLevelChart"></canvas>
+    </div>
+</section>
+
+<!-- Section 4: Extreme Weather -->
+<section id="extreme-weather" class="section-bg">
+    <h2>Increasingly Intense Storms</h2>
+    <p>Warmer oceans fuel more powerful storms. Over the past few decades, hurricanes and other extreme weather events have become more frequent and intense. Explore the data on storm frequency below.</p>
+    <div class="chart-container">
+        <canvas id="stormChart"></canvas>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section id="action" class="section-light">
+    <h2>What Can You Do?</h2>
+    <p>It's easy to feel powerless in the face of a global crisis, but every action counts. Learn how you can reduce your carbon footprint, support climate policies, and advocate for a sustainable future.</p>
+    <a href="getinvolved.html" class="call-to-action">Get Involved</a>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2024 Climate Awareness Initiative | Powered by GHG Data</p>
+</footer>
+
+<!-- JS for Charts -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Data and labels
+        const years = Array.from({ length: 41 }, (_, i) => 1980 + i);
+        const co2Levels = years.map((_, i) => 338 + i * (415 - 338) / 40);
+        const seaLevels = years.map((_, i) => i * (100 / 40));
+        const stormFrequencies = years.map(() => Math.max(2, Math.round(5 + Math.random() * 1.5)));
+        
+        // Create chart function
+        const createChart = (ctx, label, data, yLabel, color) => {
+            return new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        borderColor: color,
+                        backgroundColor: color,
+                        fill: false,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            title: { display: true, text: yLabel }
+                        },
+                        x: {
+                            title: { display: true, text: 'Year' }
+                        }
+                    }
+                }
+            });
+        };
+
+        // Global Temperature Rise Chart
+        const tempCtx = document.getElementById('temperatureChart').getContext('2d');
+        createChart(tempCtx, 'Global Temperature Rise (°C)', co2Levels, 'Temperature (°C)', 'red');
+
+        // Sea Level Rise Chart
+        const seaLevelCtx = document.getElementById('seaLevelChart').getContext('2d');
+        createChart(seaLevelCtx, 'Sea Level Rise (mm)', seaLevels, 'Sea Level Rise (mm)', 'blue');
+
+        // Storm Frequency Chart
+        const stormCtx = document.getElementById('stormChart').getContext('2d');
+        new Chart(stormCtx, {
+            type: 'bar',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Tropical Storms Frequency',
+                    data: stormFrequencies,
+                    backgroundColor: 'orange'
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        title: { display: true, text: 'Number of Storms' }
+                    },
+                    x: {
+                        title: { display: true, text: 'Year' }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

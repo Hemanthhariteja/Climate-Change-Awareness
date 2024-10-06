@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change Awareness</title>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f0f0f;
+            color: #f0f0f0;
+            overflow: hidden;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        .homepage-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            flex-direction: column;
+            gap: 40px;
+            text-align: center;
+            z-index: 10;
+        }
+        .homepage-container h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+        .homepage-container p {
+            font-size: 18px;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .homepage-container button {
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(145deg, #34e89e, #0f3443);
+            transition: transform 0.3s ease, background 0.3s ease;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .homepage-container button:hover {
+            background: linear-gradient(145deg, #0f3443, #34e89e);
+            transform: scale(1.05);
+        }
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(70,130,180,0.3) 10%, rgba(0,0,0,0) 80%);
+            animation: smoke 10s infinite alternate ease-in-out;
+            z-index: -1;
+            opacity: 0.6;
+        }
+        @keyframes smoke {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translate(-20px, -20px) rotate(360deg);
+                opacity: 0.8;
+            }
+        }
+        .floating-hexagons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .hexagon {
+            position: absolute;
+            width: 120px;
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 30px;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            animation: floatHex 15s infinite ease-in-out;
+            opacity: 0.5;
+        }
+        @keyframes floatHex {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+        footer {
+            background-color: #0f0f0f;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: relative;
+            z-index: 10;
+        }
+        /* Section for charts and information */
+        #charts, #info {
+            display: none;
+            padding: 20px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Climate Change Awareness</h1>
+        <p>Learn about the impact of climate change and explore data visualizations.</p>
+    </header>
+
+    <div class="homepage-container">
+        <h1>Welcome to Climate Change Story</h1>
+        <p>Explore the effects of rising CO<sub>2</sub> levels, temperature anomalies, and their global impact.</p>
+       <a href="g.html"> <button id="chartsBtn">Explore Charts</button> </a>
+        <a href="info.html"><button id="infoBtn">Learn More</button></a>
+    </div>
+
+    <div id="charts" class="content-section">
+        <h2>Climate Change Charts</h2>
+        <p>Here you can explore data visualizations related to climate change.</p>
+        <!-- Add chart code here, similar to your chart sections -->
+    </div>
+
+    <div id="info" class="content-section">
+        <h2>Climate Change Information</h2>
+        <p>Read detailed information about climate change, its causes, and its impacts on the environment.</p>
+        <!-- Add more detailed climate change info here -->
+    </div>
+
+    <div class="background-animation"></div>
+
+    <div class="floating-hexagons">
+        <div class="hexagon" style="left: 10%; animation-duration: 20s;"></div>
+        <div class="hexagon" style="left: 40%; animation-duration: 18s;"></div>
+        <div class="hexagon" style="left: 70%; animation-duration: 16s;"></div>
+        <div class="hexagon" style="left: 90%; animation-duration: 14s;"></div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Climate Awareness Initiative</p>
+    </footer>
+
+    <script>
+        document.getElementById('chartsBtn').addEventListener('click', () => {
+            document.getElementById('charts').style.display = 'block';
+            document.getElementById('info').style.display = 'none';
+        });
+
+        document.getElementById('infoBtn').addEventListener('click', () => {
+            document.getElementById('info').style.display = 'block';
+            document.getElementById('charts').style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>
+

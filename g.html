@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Climate Change Story</title>
+    <link rel="stylesheet" href="g.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .chart-section {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+        }
+        .chart-section canvas {
+            display: block;
+            max-width: 100%;
+        }
+        .tooltip {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: none;
+            pointer-events: none;
+        }
+        #slider {
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: rgb(246, 237, 237);
+        }
+        #smoke-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Climate Change Impact Story</h1>
+    <p>Explore how rising CO<sub>2</sub> levels have contributed to global warming, sea level rise, and more extreme weather events.</p>
+</header>
+
+<section class="content">
+    <h2>Explore the Data</h2>
+    <p>Use the slider to explore data trends from 1980 to 2020</p>
+    <input type="range" id="slider" min="1980" max="2020" step="1" value="1980">
+    
+        <canvas id="co2Chart"></canvas>
+      <div class="chart-section">  <div id="co2-tooltip" class="tooltip"></div><p>CO2 Levels Over Time: The chart shows a steady increase in CO2 concentrations from 338 ppm in 1980 to 415 ppm in 2020. This rise is a major driver of climate change, primarily due to burning fossil fuels, deforestation, and industrial activities.</p>
+    </div>
+    <div class="chart-section">
+        <canvas id="temperatureChart"></canvas>
+        <div id="temp-tooltip" class="tooltip"></div><p>Global Temperature Anomalies: As CO2 levels increase, there is a corresponding rise in global temperature anomalies. The data indicates a rise from 0.2°C above the baseline in 1980 to 1.2°C in 2020. This warming trend impacts ecosystems, weather patterns, and sea ice.</p>
+    </div>
+    <div class="chart-section">
+        <canvas id="seaLevelChart"></canvas>
+        <div id="sea-tooltip" class="tooltip"></div><p>Sea Level Rise: The increase in global temperatures accelerates the melting of glaciers and ice sheets, leading to rising sea levels. Our chart shows a rise of 100 mm over this period, contributing to coastal erosion, flooding, and habitat loss.</p>
+    </div>
+    <div class="chart-section">
+        <canvas id="stormChart"></canvas>
+        <div id="storm-tooltip" class="tooltip"></div><p>Frequency of Tropical Storms: Climate change is linked to more intense and frequent tropical storms. The data suggests an increase in the number of tropical storms, posing risks to coastal communities and infrastructure.</p>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Climate Awareness Initiative</p>
+</footer>
+
+<div id="smoke-background"></div>
+
+<script src="g.js"></script>
+</body>
+</html>
